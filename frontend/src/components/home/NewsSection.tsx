@@ -4,7 +4,6 @@ import {
   ChevronLeft, 
   ChevronRight, 
   ArrowRight, 
-  HelpCircle,
   ShieldCheck,
   Building2,
   Newspaper
@@ -37,9 +36,9 @@ const newsItems = [
 
 // --- NEWS SECTION COMPONENT ---
 export function NewsSection() {
-  const scrollRef = useRef(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const scroll = (direction) => {
+  const scroll = (direction: string) => {
     if (scrollRef.current) {
       const scrollAmount = scrollRef.current.offsetWidth / 1.5;
       scrollRef.current.scrollBy({

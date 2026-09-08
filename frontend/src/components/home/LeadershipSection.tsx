@@ -205,7 +205,7 @@ function EmployeeHighlightsCarousel() {
   );
 }
 
-function EmployeeCard({ name, role }) {
+function EmployeeCard({ name, role }: { name: string; role: string }) {
   return (
     <div className="group flex h-full w-full flex-col items-center rounded-[24px] border border-gray-100 bg-white p-6 text-center shadow-[0_8px_30px_rgba(0,0,0,0.03)] transition-all hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] md:p-8">
       {/* Avatar */}
