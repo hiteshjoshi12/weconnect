@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
 import { useState } from "react";
+import type { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
 import buildingImage from "../assets/images/itcroyalbengal.png";
@@ -12,7 +13,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   // Handle the login button click
-  const handleLogin = (e) => {
+  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission reload
     
     // You can add your authentication logic here later (e.g., API calls)
