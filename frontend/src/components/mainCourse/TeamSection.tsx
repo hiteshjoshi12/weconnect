@@ -1,6 +1,114 @@
+import { useRef } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { teamMembers } from "../../data/mainCourse";
 import { SectionTitle } from "./SectionTitle";
 
-export function TeamSection() { return <section className="bg-[#f7f7f5] py-16 md:py-20"><div className="mx-auto max-w-[900px] px-6 md:px-8"><SectionTitle title="Meet The ITC F&B Team" subtitle="Our Success Story" /><div className="relative mt-10 grid gap-8 md:grid-cols-3">{teamMembers.map((member, index) => <motion.article key={member.name} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: index * 0.08 }} className="text-center"><div className="aspect-[1.15] overflow-hidden"><img src={member.image} alt={member.name} className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" /></div><h3 className="mt-4 text-base font-semibold text-[#2f3a46]">{member.name}</h3><p className="mt-1 text-[11px] font-bold text-[#37434e]">{member.role}</p><span className="mx-auto mt-2 block h-0.5 w-5 bg-[#c8a04b]" /><p className="mx-auto mt-3 max-w-[240px] text-xs leading-5 text-[#5e6268]">{member.description}</p></motion.article>)}<button aria-label="Previous team member" className="absolute -left-4 top-1/3 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#ad8a3d] text-white"><ArrowLeft size={16} /></button><button aria-label="Next team member" className="absolute -right-4 top-1/3 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#ad8a3d] text-white"><ArrowRight size={16} /></button></div></div></section>; }
+export function TeamSection() {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  // Smooth scroll logic for the premium carousel
+  const scroll = (direction: "left" | "right"): void => {
+    if (scrollRef.current) {
+      const scrollAmount = scrollRef.current.offsetWidth / 1.5;
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
+    <section className="relative w-full overflow-hidden bg-[#fafaf8] py-16 md:py-20">
+      {/* Subtle 3D Ambient Background Glows */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-20 top-20 h-[500px] w-[500px] rounded-full bg-[#C79A43]/5 blur-[120px]" />
+        <div className="absolute -right-40 bottom-10 h-[600px] w-[600px] rounded-full bg-[#0c2444]/5 blur-[120px]" />
+      </div>
+
+      {/* Reduced max-width to 1100px to perfectly match Featured Articles */}
+      <div className="relative mx-auto max-w-[1100px] px-4 md:px-8 xl:px-12">
+        
+        {/* Header Section */}
+        <div className="mb-10 flex flex-col items-center justify-between gap-6 sm:flex-row md:mb-12">
+          <SectionTitle
+            title="Meet The ITC F&B Team"
+            subtitle="Our Success Story"
+          />
+
+          {/* Premium Glass Navigation Arrows */}
+          <div className="flex shrink-0 gap-3">
+            <button
+              onClick={() => scroll("left")}
+              className="group flex h-10 w-10 md:h-11 md:w-11 items-center justify-center rounded-full border border-gray-200 bg-white shadow-[0_4px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[#C79A43] hover:bg-[#C79A43] hover:text-white hover:shadow-[0_8px_16px_rgba(199,154,67,0.2)] text-gray-500"
+              aria-label="Previous team member"
+            >
+              <ArrowLeft size={18} strokeWidth={1.5} className="transition-transform group-hover:-translate-x-0.5" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="group flex h-10 w-10 md:h-11 md:w-11 items-center justify-center rounded-full border border-gray-200 bg-white shadow-[0_4px_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-[#C79A43] hover:bg-[#C79A43] hover:text-white hover:shadow-[0_8px_16px_rgba(199,154,67,0.2)] text-gray-500"
+              aria-label="Next team member"
+            >
+              <ArrowRight size={18} strokeWidth={1.5} className="transition-transform group-hover:translate-x-0.5" />
+            </button>
+          </div>
+        </div>
+
+        {/* 3D Carousel Container */}
+        {/* Added `md:justify-center` so the cards sit perfectly in the middle of the screen */}
+        <div
+          ref={scrollRef}
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-10 pt-4 md:justify-center perspective-[1200px] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {teamMembers.map((member, index) => (
+            <motion.article
+              key={member.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+              // 3D Hover Lift & Tilt
+              whileHover={{ 
+                scale: 1.03, 
+                rotateX: 2, 
+                rotateY: -2,
+                y: -6,
+                z: 20
+              }}
+              // Matched the exact proportionate dimensions of Featured Articles
+              className="group relative flex h-[340px] w-[260px] sm:h-[380px] sm:w-[280px] md:h-[400px] md:w-[300px] shrink-0 snap-center flex-col overflow-hidden rounded-[24px] border border-gray-100 bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] transition-all duration-500 hover:shadow-[0_25px_50px_-12px_rgba(199,154,67,0.25)]"
+            >
+              {/* Premium Image Container */}
+              <div className="relative h-[65%] w-full overflow-hidden bg-gray-100">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                {/* Subtle Inner Shadow for Depth */}
+                <div className="absolute inset-0 shadow-[inset_0_-20px_40px_rgba(0,0,0,0.1)] pointer-events-none" />
+              </div>
+
+              {/* Card Content */}
+              <div className="flex flex-1 flex-col items-center justify-center p-4 text-center md:p-6">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#C79A43] md:text-[11px]">
+                  {member.role}
+                </p>
+                <h3 className="mt-1.5 text-[17px] font-bold text-[#0c2444] transition-colors group-hover:text-[#9E742B] md:text-[19px]">
+                  {member.name}
+                </h3>
+                
+                <span className="my-3 block h-[2px] w-6 bg-gradient-to-r from-transparent via-[#C79A43] to-transparent opacity-50 transition-all duration-500 group-hover:w-12 group-hover:opacity-100" />
+                
+                <p className="line-clamp-2 text-[12px] leading-relaxed text-gray-500 md:text-[13px]">
+                  {member.description}
+                </p>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -3,10 +3,13 @@ import Home from "./pages/Home";
 import Login from "./pages/Login"; // Adjust the import path as needed
 import Knowledge from "./pages/Knowledge";
 import MainCourse from "./pages/MainCourse";
+import { Footer } from "./components/layout/Footer";
+import { Header } from "./components/layout/Header";
 
 function App() {
   return (
     <BrowserRouter>
+    <Header />
       <Routes>
         {/* Landing Page is now Login */}
         <Route path="/" element={<Login />} />
@@ -21,6 +24,7 @@ function App() {
         {/* Fallback Route - Redirects unknown URLs back to Login */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -1,1 +1,19 @@
-export function SectionTitle({ title, subtitle }: { title: string; subtitle: string }) { return <div className="text-center"><h2 className="text-2xl font-semibold uppercase tracking-[-0.02em] text-[#263544] md:text-3xl">{title}</h2><div className="mx-auto mt-3 h-px w-28 bg-[#a9adb0]"><span className="mx-auto block h-0.5 w-10 bg-[#c8a04b]" /></div><p className="mt-4 text-sm text-[#59616a]">{subtitle}</p></div>; }
+export function SectionTitle({
+  title,
+  subtitle,
+}: {
+  title: string;
+  subtitle: string;
+}) {
+  return (
+    <div className="text-center">
+      <h2 className="text-2xl font-semibold uppercase tracking-[-0.02em] text-[#263544] md:text-3xl">
+        {title}
+      </h2>
+      <div className="mx-auto mt-3 h-px w-28 bg-[#a9adb0]">
+        <span className="mx-auto block h-0.5 w-10 bg-[#c8a04b]" />
+      </div>
+      <p className="mt-4 text-sm text-[#59616a]">{subtitle}</p>
+    </div>
+  );
+}

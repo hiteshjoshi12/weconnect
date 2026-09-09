@@ -2,5 +2,51 @@ import { footerColumns } from "../../data/mainCourse";
 import logoImage from "../../assets/images/itc_logo.png";
 
 export function MainCourseFooter() {
-  return <footer className="text-white"><div className="bg-[#707275] py-16"><div className="mx-auto grid max-w-[1100px] gap-12 px-6 md:grid-cols-[0.9fr_1.5fr] md:px-8"><div><img src={logoImage} alt="ITC Hotels Limited" className="h-8 w-auto brightness-0 invert" /><p className="mt-8 max-w-xs text-sm font-medium leading-7 text-white/90">The F &amp; B Knowledge Platform aims to place the rich knowledge and invaluable experience of our teams in F&amp;B Production.</p></div><div><h2 className="border-l-2 border-[#c8a04b] pl-3 text-lg font-semibold uppercase">Category</h2><div className="mt-7 grid grid-cols-2 gap-8 sm:grid-cols-3">{footerColumns.map((column) => <div key={column[0]} className="flex flex-col gap-3">{column.map((link) => <a href="#top" key={link} className="text-sm font-medium text-white/90 transition-colors hover:text-[#f1d18a]">{link}</a>)}</div>)}</div></div></div></div><div className="bg-[#2e3948] py-4"><div className="mx-auto flex max-w-[1100px] flex-col justify-between gap-2 px-6 text-xs font-semibold sm:flex-row md:px-8"><span>Copyright © 2019 ITC Hotels</span><a href="#top" className="hover:text-[#f1d18a]">Intranet Help</a></div></div></footer>;
+  return (
+    <footer className="text-white">
+      <div className="bg-[#707275] py-16">
+        <div className="mx-auto grid max-w-[1100px] gap-12 px-6 md:grid-cols-[0.9fr_1.5fr] md:px-8">
+          <div>
+            <img
+              src={logoImage}
+              alt="ITC Hotels Limited"
+              className="h-8 w-auto brightness-0 invert"
+            />
+            <p className="mt-8 max-w-xs text-sm font-medium leading-7 text-white/90">
+              The F &amp; B Knowledge Platform aims to place the rich knowledge
+              and invaluable experience of our teams in F&amp;B Production.
+            </p>
+          </div>
+          <div>
+            <h2 className="border-l-2 border-[#c8a04b] pl-3 text-lg font-semibold uppercase">
+              Category
+            </h2>
+            <div className="mt-7 grid grid-cols-2 gap-8 sm:grid-cols-3">
+              {footerColumns.map((column) => (
+                <div key={column[0]} className="flex flex-col gap-3">
+                  {column.map((link) => (
+                    <a
+                      href="#top"
+                      key={link}
+                      className="text-sm font-medium text-white/90 transition-colors hover:text-[#f1d18a]"
+                    >
+                      {link}
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-[#2e3948] py-4">
+        <div className="mx-auto flex max-w-[1100px] flex-col justify-between gap-2 px-6 text-xs font-semibold sm:flex-row md:px-8">
+          <span>Copyright © 2019 ITC Hotels</span>
+          <a href="#top" className="hover:text-[#f1d18a]">
+            Intranet Help
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
 }

@@ -23,6 +23,9 @@ export const featuredArticles: MainCourseArticle[] = [
   { title: "MADE IN INDIA", subtitle: "Home Grown Beverages", image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=85&w=900" },
   { title: "Chai is in !", subtitle: "The Indian phenomenon", image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?auto=format&fit=crop&q=85&w=900" },
   { title: "Bath Bomb Cocktails", subtitle: "Margarita-flavored fizzers", image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=85&w=900" },
+  { title: "MADE IN INDIA", subtitle: "Home Grown Beverages", image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=85&w=900" },
+  { title: "Chai is in !", subtitle: "The Indian phenomenon", image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?auto=format&fit=crop&q=85&w=900" },
+  { title: "Bath Bomb Cocktails", subtitle: "Margarita-flavored fizzers", image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=85&w=900" }
 ];
 
 export const beverageCategories = ["Show All", "Beer", "Champagne", "Cocktails", "Spirits", "Wine"];

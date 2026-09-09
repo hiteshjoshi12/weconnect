@@ -1,7 +1,5 @@
 import { ArrowRight, Search } from "lucide-react";
 import { motion } from "framer-motion";
-
-// Ensure this path matches your project structure
 import bgImage from "../../assets/images/itchotel.webp";
 
 export function HeroSection() {

@@ -86,9 +86,6 @@ export function Header() {
                 <span className={`absolute inset-x-3 bottom-0 h-0.5 origin-left bg-[#B89045] transition-transform duration-300 ${location.pathname === item.path ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
               </button>
             ))}
-            <button className="flex items-center gap-1 px-3 py-5 text-[12px] font-semibold text-gray-600 transition-colors hover:text-gray-900">
-              More <span className="text-[#B89045]">+</span>
-            </button>
           </nav>
 
           {/* RIGHT ACTIONS */}
@@ -213,9 +210,6 @@ export function Header() {
                     {item.label}
                   </button>
                 ))}
-                <button className="w-full px-4 py-3.5 text-left text-[14px] font-medium text-gray-700">
-                  More <span className="text-[#B89045]">+</span>
-                </button>
               </nav>
             </motion.div>
           </>
