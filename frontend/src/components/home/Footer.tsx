@@ -3,7 +3,7 @@ import {
   
 } from "lucide-react";
 
-export function Footer() {
+export function Footer({ showHelp = true }: { showHelp?: boolean }) {
   return (
     <footer className="relative w-full bg-[#0c1420]">
       {/* Top Gold Accent Line */}
@@ -24,13 +24,13 @@ export function Footer() {
 
           {/* Right: Help Links */}
           <div className="flex items-center gap-6">
-            <a 
+            {showHelp && <a 
               href="/home" 
               className="group flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-[13px] font-medium text-gray-300 transition-colors hover:bg-white/10 hover:text-white"
             >
               <HelpCircle size={16} className="text-[#C79A43] transition-transform group-hover:scale-110" />
               Intranet Help
-            </a>
+            </a>}
             
             <a 
               href="/home" 

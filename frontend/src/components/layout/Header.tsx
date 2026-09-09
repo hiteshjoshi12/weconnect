@@ -13,17 +13,17 @@ import { motion, AnimatePresence } from "framer-motion";
 // Ensure this path matches your project structure
 import logoImage from "../../assets/images/itc_logo.png";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 
 const navigation = [
-  "My Unit",
-  "Knowledge Portal",
-  "Main Course",
-  "Information Technology",
-  "HR Services",
-  "Preferential Rates",
+  { label: "My Unit", path: "/home" },
+  { label: "Knowledge Portal", path: "/knowledge" },
+  { label: "Main Course", path: "/main-course" },
+  { label: "Information Technology", path: "#" },
+  { label: "HR Services", path: "#" },
+  { label: "Preferential Rate Program", path: "#" },
 ];
 
 export function Header() {
@@ -32,6 +32,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Shrink and blur the header on scroll
   useEffect(() => {
@@ -77,12 +78,17 @@ export function Header() {
           <nav className="hidden lg:flex lg:items-center lg:gap-1">
             {navigation.map((item) => (
               <button
-                key={item}
-                className="cursor-pointer rounded-full px-4 py-2 text-[13px] font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                key={item.label}
+                onClick={() => item.path !== "#" && navigate(item.path)}
+                className={`group relative cursor-pointer px-3 py-5 text-[12px] font-semibold tracking-[0.02em] transition-colors ${location.pathname === item.path ? "text-[#171717]" : "text-gray-600 hover:text-gray-900"}`}
               >
-                {item}
+                {item.label}
+                <span className={`absolute inset-x-3 bottom-0 h-0.5 origin-left bg-[#B89045] transition-transform duration-300 ${location.pathname === item.path ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
               </button>
             ))}
+            <button className="flex items-center gap-1 px-3 py-5 text-[12px] font-semibold text-gray-600 transition-colors hover:text-gray-900">
+              More <span className="text-[#B89045]">+</span>
+            </button>
           </nav>
 
           {/* RIGHT ACTIONS */}
@@ -197,12 +203,19 @@ export function Header() {
               <nav className="flex flex-col overflow-y-auto p-3 gap-1">
                 {navigation.map((item) => (
                   <button
-                    key={item}
-                    className="w-full rounded-lg px-4 py-3.5 text-left text-[14px] font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900"
+                    key={item.label}
+                    onClick={() => {
+                      if (item.path !== "#") navigate(item.path);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`w-full border-b border-gray-100 px-4 py-3.5 text-left text-[14px] font-medium transition-colors hover:bg-[#faf8f2] hover:text-gray-900 ${location.pathname === item.path ? "text-[#9E742B]" : "text-gray-700"}`}
                   >
-                    {item}
+                    {item.label}
                   </button>
                 ))}
+                <button className="w-full px-4 py-3.5 text-left text-[14px] font-medium text-gray-700">
+                  More <span className="text-[#B89045]">+</span>
+                </button>
               </nav>
             </motion.div>
           </>
