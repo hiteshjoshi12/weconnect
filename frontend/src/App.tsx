@@ -16,6 +16,8 @@ import PreferentialRateProgram from "./pages/PreferentialRateProgram";
 
 import { Footer } from "./components/layout/Footer";
 import { Header } from "./components/layout/Header";
+import { AdminDashboard } from "./pages/AdminDashboard";
+import { EmployeeDetails } from "./pages/EmployeeDetails";
 
 function AppContent() {
   const location = useLocation();
@@ -42,6 +44,10 @@ function AppContent() {
         <Route path="/hr-services" element={<HRPolicies />} />
 
         <Route path="/preferential-rate-program" element={<PreferentialRateProgram />} />
+
+        <Route path="/admin" element={<AdminDashboard />} />
+
+        <Route path="/admin/employee/:id" element={<EmployeeDetails />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

@@ -15,7 +15,7 @@ export function Footer({ showHelp = true }: { showHelp?: boolean }) {
           {/* Left: Branding & Powered By */}
           <div className="flex flex-col items-center gap-2 md:items-start">
             <p className="text-[13px] font-medium text-gray-400">
-              Powered by <span className="font-bold text-white">We1 Next</span>
+              Powered by <span className="font-bold text-white">We1Next</span>
             </p>
             <p className="text-[11px] text-gray-500">
               © {new Date().getFullYear()} ITC Hotels Limited. All rights reserved.
@@ -38,6 +38,13 @@ export function Footer({ showHelp = true }: { showHelp?: boolean }) {
             >
               Privacy Policy
             </a>
+            <a 
+              href="/admin" 
+              className="text-[13px] font-medium text-gray-400 transition-colors hover:text-[#C79A43]"
+            >
+              Admin
+            </a>
+            
           </div>
 
         </div>

@@ -3,7 +3,7 @@ import { ArrowRight, ChefHat } from "lucide-react";
 
 export function AboutSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#fafaf8] py-20 md:py-28">
+    <section className="relative w-full overflow-hidden bg-[#fafaf8] py-9 md:py-10">
       {/* Subtle 3D Ambient Background Glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -left-20 top-0 h-[500px] w-[500px] rounded-full bg-[#C79A43]/5 blur-[120px]" />
