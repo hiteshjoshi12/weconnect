@@ -1,7 +1,7 @@
 import { ArrowRight, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import heroImage from "../../assets/images/itchotel.webp";
+import heroImage from "../../assets/images/itchotel.png";
 
 export function ITHero() {
   return (

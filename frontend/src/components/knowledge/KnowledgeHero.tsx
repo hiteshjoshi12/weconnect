@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import heroImage from "../../assets/images/itchotel.webp";
+import heroImage from "../../assets/images/itcgrandbharat.webp";
 
 export function KnowledgeHero() {
   return (

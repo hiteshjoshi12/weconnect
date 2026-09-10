@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, X } from "lucide-react";
 import { motion } from "framer-motion";
-import cioImage from "../../assets/images/sanjiv_puri.jpg";
+import cioImage from "../../assets/images/Amandeep-Sarna.jpg";
 
 const fullMessage = [
   "As we continue to navigate the ever-evolving landscape of modern business, it is imperative that we remain agile and proactive in our approach to technology. In today's digital age, the pace of innovation is relentless, and staying ahead requires not only adaptation but also a commitment to embracing change.",

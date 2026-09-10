@@ -1,6 +1,6 @@
 import { ArrowRight, Search } from "lucide-react";
 import { motion } from "framer-motion";
-import bgImage from "../../assets/images/itchotel.webp";
+import bgImage from "../../assets/images/itchotel.png";
 
 export function HeroSection() {
   return (

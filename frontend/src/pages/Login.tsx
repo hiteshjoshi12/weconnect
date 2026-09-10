@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
-import buildingImage from "../assets/images/itcroyalbengal.png";
+import buildingImage from "../assets/images/itcroyalbengal.webp";
 import logoImage from "../assets/images/itc_logo.png";
 
 export default function Login() {
