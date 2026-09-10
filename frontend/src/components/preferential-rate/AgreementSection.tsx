@@ -1,0 +1,5 @@
+import { agreementStatements } from "../../data/preferentialRate";
+
+export function AgreementSection({ agreements, errors, toggle }: { agreements: boolean[]; errors?: string; toggle: (index: number) => void }) {
+  return <section className="border-t border-gray-200 pt-9"><div className="mb-7"><p className="text-xs font-bold uppercase tracking-[0.25em] text-[#A57C35]">Section 03</p><h2 className="mt-3 text-xl font-semibold text-[#222]">By requesting this preferential rate, I accept &amp; agree:</h2></div><div className="space-y-3 rounded-2xl border border-[#C79A43]/30 bg-[#F8F7F4] p-5">{agreementStatements.map((statement, index) => <label key={statement} className="flex cursor-pointer items-start gap-3 rounded-lg p-2 text-sm leading-6 text-[#555] transition-colors hover:bg-white"><input type="checkbox" checked={agreements[index]} onChange={() => toggle(index)} aria-required="true" className="mt-1 h-4 w-4 accent-[#C79A43]" /><span>{statement}</span></label>)}</div>{errors && <p className="mt-2 text-xs text-red-700">{errors}</p>}</section>;
+}

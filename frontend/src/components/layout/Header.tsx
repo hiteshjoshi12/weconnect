@@ -21,14 +21,23 @@ const navigation = [
   { label: "My Unit", path: "/home" },
   { label: "Knowledge Portal", path: "/knowledge" },
   { label: "Main Course", path: "/main-course" },
-  { label: "Information Technology", path: "#" },
-  { label: "HR Services", path: "#" },
-  { label: "Preferential Rate Program", path: "#" },
+  { label: "Information Technology", path: "/information-technology" },
+  { label: "HR Services", path: "/hr-services" },
+  {
+    label: "Preferential Rate Program",
+    path: "/preferential-rate-program",
+    children: [
+      { label: "Authorization form", hash: "#authorization-form" },
+      { label: "View Details", hash: "#view-details" },
+      { label: "Validate Form Details", hash: "#validate-form-details" },
+    ],
+  },
 ];
 
 export function Header() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPreferentialMenuOpen, setIsPreferentialMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const navigate = useNavigate();
@@ -76,16 +85,59 @@ export function Header() {
 
           {/* CENTER NAVIGATION (App-like pills instead of underlines) */}
           <nav className="hidden lg:flex lg:items-center lg:gap-1">
-            {navigation.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => item.path !== "#" && navigate(item.path)}
-                className={`group relative cursor-pointer px-3 py-5 text-[12px] font-semibold tracking-[0.02em] transition-colors ${location.pathname === item.path ? "text-[#171717]" : "text-gray-600 hover:text-gray-900"}`}
-              >
-                {item.label}
-                <span className={`absolute inset-x-3 bottom-0 h-0.5 origin-left bg-[#B89045] transition-transform duration-300 ${location.pathname === item.path ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
-              </button>
-            ))}
+            {navigation.map((item) => {
+              const hasChildren = "children" in item;
+
+              return (
+                <div
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={() => hasChildren && setIsPreferentialMenuOpen(true)}
+                  onMouseLeave={() => hasChildren && setIsPreferentialMenuOpen(false)}
+                >
+                  <button
+                    onClick={() => {
+                      if (item.path !== "#") navigate(item.path);
+                      if (hasChildren) setIsPreferentialMenuOpen((isOpen) => !isOpen);
+                    }}
+                    onFocus={() => hasChildren && setIsPreferentialMenuOpen(true)}
+                    className={`group relative flex cursor-pointer items-center gap-1 px-3 py-5 text-[12px] font-semibold tracking-[0.02em] transition-colors ${location.pathname === item.path ? "text-[#171717]" : "text-gray-600 hover:text-gray-900"}`}
+                    aria-haspopup={hasChildren ? "menu" : undefined}
+                    aria-expanded={hasChildren ? isPreferentialMenuOpen : undefined}
+                  >
+                    {item.label}
+                    {hasChildren && <ChevronDown size={13} className={`transition-transform ${isPreferentialMenuOpen ? "rotate-180" : ""}`} />}
+                    <span className={`absolute inset-x-3 bottom-0 h-0.5 origin-left bg-[#B89045] transition-transform duration-300 ${location.pathname === item.path ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
+                  </button>
+                  {hasChildren && (
+                    <AnimatePresence>
+                      {isPreferentialMenuOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 8 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute right-0 top-full z-20 w-56 border border-gray-100 bg-white p-1.5 shadow-lg"
+                          role="menu"
+                        >
+                          {item.children?.map((child) => (
+                            <Link
+                              key={child.label}
+                              to={`${item.path}${child.hash}`}
+                              role="menuitem"
+                              onClick={() => setIsPreferentialMenuOpen(false)}
+                              className="block px-3 py-3 text-[12px] font-semibold text-gray-600 transition-colors hover:bg-[#faf8f2] hover:text-[#9E742B] focus:bg-[#faf8f2] focus:text-[#9E742B] focus:outline-none"
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
+                </div>
+              );
+            })}
           </nav>
 
           {/* RIGHT ACTIONS */}
@@ -199,16 +251,32 @@ export function Header() {
 
               <nav className="flex flex-col overflow-y-auto p-3 gap-1">
                 {navigation.map((item) => (
-                  <button
-                    key={item.label}
-                    onClick={() => {
-                      if (item.path !== "#") navigate(item.path);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className={`w-full border-b border-gray-100 px-4 py-3.5 text-left text-[14px] font-medium transition-colors hover:bg-[#faf8f2] hover:text-gray-900 ${location.pathname === item.path ? "text-[#9E742B]" : "text-gray-700"}`}
-                  >
-                    {item.label}
-                  </button>
+                  <div key={item.label} className="border-b border-gray-100">
+                    <button
+                      onClick={() => {
+                        if (item.path !== "#") navigate(item.path);
+                        if (!("children" in item)) setIsMobileMenuOpen(false);
+                      }}
+                      className={`flex w-full items-center justify-between px-4 py-3.5 text-left text-[14px] font-medium transition-colors hover:bg-[#faf8f2] hover:text-gray-900 ${location.pathname === item.path ? "text-[#9E742B]" : "text-gray-700"}`}
+                    >
+                      {item.label}
+                      {"children" in item && <ChevronDown size={15} />}
+                    </button>
+                    {"children" in item && (
+                      <div className="mb-2 ml-4 border-l border-[#C79A43]/50 pl-3">
+                        {item.children?.map((child) => (
+                          <Link
+                            key={child.label}
+                            to={`${item.path}${child.hash}`}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="block px-3 py-2.5 text-[13px] text-gray-500 transition-colors hover:text-[#9E742B]"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
               </nav>
             </motion.div>
